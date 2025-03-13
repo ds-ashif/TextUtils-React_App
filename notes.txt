@@ -1,0 +1,58 @@
+JSX:  JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code inside your JavaScript code. It makes writing React components easier and more readable.
+
+Why is JSX useful?
+Readability: JSX makes the code easier to read and write because it looks like HTML.
+Integration: It allows you to mix HTML structure and JavaScript logic in the same file, which is useful in React for defining UI components.
+
+in jsx:
+class-> className
+for= htmlFor
+tab= tabIndex
+
+
+react app k function me sirf ek hi tag hota h like div agr ek se jyada hoga then error aaega
+-->To use more than one tag,we have to use JSX fragment "<> </>" close evry tag in jsx fragment.
+
+
+JSX is compiled by BABEL: babel compiles jsx down to React.createElement() calls.
+
+
+
+props:
+Props (short for properties) are like function arguments in React. They allow you to pass data from one component to another.
+
+📌 How Props Work (Simple Example)
+Imagine you have a Greeting component that should display a name. Instead of hardcoding the name, you can pass it as a prop.
+
+Example: Using Props
+
+function Greeting(props) {
+    return <h1>Hello, {props.name}!</h1>;
+}
+
+export default function App() {
+    return <Greeting name="Alice" />;
+}
+
+🔹 Breaking it Down:
+Greeting is a component that accepts props.
+props.name is used inside Greeting to display a dynamic name.
+In App, we pass "Alice" as a prop (name="Alice").
+The output will be:
+"Hello, Alice!"
+🔥 Key Things to Remember About Props:
+✔️ Props pass data from a parent component to a child.
+✔️ Props are read-only (cannot be modified inside the child component).
+✔️ They help make components reusable.
+
+
+proptypes---> string,array,object,number,link...
+we can provide default props to function if no prop is set in our App.jsx then that default props will be shown
+
+Navbar.propTypes = {
+    title: PropTypes.string.isRequired,
+    abouttxt: PropTypes.string.isRequired
+};
+
+.isRequired:: to assure that some props have set either custom or default but if neither of them is set then it cause error 
+so we use .isRequired to ensure that props are passed. 
