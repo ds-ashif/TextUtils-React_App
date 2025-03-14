@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";  // i used HashRouter instead of BrowserRouter to deploy successfully by github BrowserRouter giving error 404 on live website
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import AboutUs from './components/AboutUs';
@@ -45,7 +45,7 @@ function App() {
 
         <div className='my-3'>
           <Routes>
-            <Route exact path="/about" element={<AboutUs />} />
+            <Route exact path="/about" element={<AboutUs mode={mode}/>} />
             <Route exact path="/" element={<Textform showAlert={showAlert} heading="Enter Your Text to Analyze" mode={mode} />} />
           </Routes>
         </div>

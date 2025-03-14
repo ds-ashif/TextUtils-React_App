@@ -37,6 +37,7 @@ export default function Textform(props) {
         let text=document.getElementById('mybox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges(); //remove selected text 
         props.showAlert("Text Copied!","success");
     }
     const wordcount = (words) => {
@@ -58,19 +59,19 @@ export default function Textform(props) {
             <div className="mb-3">
                 <textarea className="form-control" id="mybox" value={text} onChange={handleOnChange} placeholder='Enter Text' rows="10" style={{ animation: animationClass ? 'scaleUp 0.5s ease-out forwards' : '' , backgroundColor: props.mode==='light'?'white':'#0222', color: props.mode==='dark'?'white':'black'}}></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>Convert to UpperCase</button>
-            <button className="btn btn-secondary mx-5" onClick={handleLowerClick}>Convert to LowerCase</button>
-            <button className="btn btn-danger" onClick={handleReset}>Reset Text</button>
-            <button className="btn btn-dark mx-5"onClick={reverse}>Reverse Text</button>
-            <button className="btn btn-success mx-5" onClick={decorate}>Move text</button>
-            <button className="btn btn-info" onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to UpperCase</button>
+            <button disabled={text.length===0} className="btn btn-secondary mx-1 my-1" onClick={handleLowerClick}>Convert to LowerCase</button>
+            <button disabled={text.length===0} className="btn btn-danger mx-1 my-1" onClick={handleReset}>Reset Text</button>
+            <button disabled={text.length===0} className="btn btn-dark mx-1 my-1"onClick={reverse}>Reverse Text</button>
+            <button disabled={text.length===0} className="btn btn-success mx-1 my-1" onClick={decorate}>Move text</button>
+            <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleCopy}>Copy Text</button>
         </div>
         <div className="container my-3">
             <h3><i>Your Text Summary</i></h3>
             <p>{wordcount(text.trim().split(/\s+/))} words and {text.length} characters.</p>
-            <p>On Average, You can take {0.008*text.split(" ").length} minutes to read the above text.</p>
+            <p>On Average, You can take {0.008*text.split(" ").filter((element)=>{return element.length!==0}).length} minutes to read the above text.</p>
             <h2>Preview</h2>
-            <p>{text.length>0?text:'Enter Text to preview'}</p>
+            <p>{text.length>0?text:'Nothing to preview!'}</p>
         </div>
 
     </>
